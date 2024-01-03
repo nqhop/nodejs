@@ -1,13 +1,13 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 const p = path.join(
   path.dirname(process.mainModule.filename),
-  "data",
-  "products.json"
+  'data',
+  'products.json'
 );
 
-const getProductsFromFile = (cb) => {
+const getProductsFromFile = cb => {
   fs.readFile(p, (err, fileContent) => {
     if (err) {
       cb([]);
@@ -17,15 +17,18 @@ const getProductsFromFile = (cb) => {
   });
 };
 
+const getCartFromFile = cb => {
+  cb(['a']);
+}
 module.exports = class Product {
   constructor(t) {
     this.title = t;
   }
 
   save() {
-    getProductsFromFile((products) => {
+    getProductsFromFile(products => {
       products.push(this);
-      fs.writeFile(p, JSON.stringify(products), (err) => {
+      fs.writeFile(p, JSON.stringify(products), err => {
         console.log(err);
       });
     });
@@ -33,5 +36,9 @@ module.exports = class Product {
 
   static fetchAll(cb) {
     getProductsFromFile(cb);
+  }
+
+  static fetchCart(cb) {
+    getCartFromFile(cb);
   }
 };

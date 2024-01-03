@@ -22,7 +22,7 @@ module.exports = class Product {
       });
     });
   }
-  static fetchAll(cb) {
+  static fetchAll() {
     const p = path.join(
       path.dirname(process.mainModule.filename),
       "data",
