@@ -1,0 +1,7 @@
+create a new Tutorial
+find a Tutorial by id
+get all Tutorials
+get all published Tutorials
+update a Tutorial by id
+remove a Tutorial
+remove all Tutorials
